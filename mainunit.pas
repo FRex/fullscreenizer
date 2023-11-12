@@ -18,16 +18,11 @@ type
   { TMain }
 
   TMain = class(TForm)
-    btRefresh: TButton;
     btFullscreenize: TButton;
-    btHelp: TButton;
     cbApplyStayOnTop: TCheckBox;
-    Label1: TLabel;
     lbWindows: TListBox;
     tmRefresh: TTimer;
     procedure btFullscreenizeClick(Sender: TObject);
-    procedure btHelpClick(Sender: TObject);
-    procedure btRefreshClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure lbWindowsDrawItem(Control: TWinControl; Index: integer;
@@ -67,11 +62,6 @@ begin
   if Icon <> 0 then Icon := CopyIcon(Icon);
   Main.AddWindow(_para1, TitStr, Icon);
   Result := True;
-end;
-
-procedure TMain.btRefreshClick(Sender: TObject);
-begin
-  RefreshWindows;
 end;
 
 procedure TMain.FormCreate(Sender: TObject);
@@ -139,19 +129,6 @@ begin
     SetWindowLong(Win, GWL_EXSTYLE, GetWindowLong(Win, GWL_EXSTYLE) or WS_EX_TOPMOST);
   MoveWindow(Win, FinalRect.Left, FinalRect.Top, FinalRect.Right -
     FinalRect.Left, FinalRect.Bottom - FinalRect.Top, True);
-end;
-
-procedure TMain.btHelpClick(Sender: TObject);
-begin
-  ShowMessage('Open the game you want to force in borderless-windowed-fullscreen mode, '
-    +
-    'set it to windowed mode to the resolution you want, hit the Refresh button ' +
-    'to refresh the windows list, select the game window from the list and press ' +
-    'the Fullscreenize button.  The window will be resized to the desktop area and ' +
-    'the border will be removed.  Note that using a different in-game resolution ' +
-    'from the desktop resolution may not work properly (or at all) depending on the game.'
-    + LineEnding + LineEnding + LineEnding +
-    'Made by Kostas "Bad Sector" Michalopoulos');
 end;
 
 procedure TMain.RefreshWindows;
