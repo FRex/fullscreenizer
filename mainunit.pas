@@ -154,7 +154,12 @@ end;
 procedure TMain.RefreshWindows;
 var
   I: integer;
+  OldWindowHandle: THandle;
 begin
+  OldWindowHandle := 0;
+  if (0 < lbWindows.ItemIndex) and (lbWindows.ItemIndex < Length(Wins)) then
+    OldWindowHandle := Wins[lbWindows.ItemIndex].Handle;
+
   DestroyWindowInfo;
   EnumWindows(@WindowsEnumerator, 0);
   lbWindows.Clear;
@@ -162,6 +167,11 @@ begin
   begin
     lbWindows.Items.Add(Wins[I].Title);
   end;
+
+  if OldWindowHandle <> 0 then
+    for I := 0 to High(Wins) do
+      if OldWindowHandle = Wins[I].Handle then
+        lbWindows.ItemIndex := I;
 end;
 
 procedure TMain.AddWindow(AHandle: THandle; ATitle: string; AIcon: Hicon);
