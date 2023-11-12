@@ -547,4 +547,10 @@ object Main: TMain
     State = cbChecked
     TabOrder = 4
   end
+  object tmRefresh: TTimer
+    Interval = 500
+    OnTimer = tmRefreshTimer
+    Left = 189
+    Top = 18
+  end
 end

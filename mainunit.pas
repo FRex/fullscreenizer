@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Windows, types;
+  ExtCtrls, Windows, types;
 
 type
   TWindowInfo = record
@@ -24,6 +24,7 @@ type
     cbApplyStayOnTop: TCheckBox;
     Label1: TLabel;
     lbWindows: TListBox;
+    tmRefresh: TTimer;
     procedure btFullscreenizeClick(Sender: TObject);
     procedure btHelpClick(Sender: TObject);
     procedure btRefreshClick(Sender: TObject);
@@ -31,6 +32,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure lbWindowsDrawItem(Control: TWinControl; Index: integer;
       ARect: TRect; State: TOwnerDrawState);
+    procedure tmRefreshTimer(Sender: TObject);
   private
     { private declarations }
   public
@@ -94,6 +96,11 @@ begin
   end;
 end;
 
+procedure TMain.tmRefreshTimer(Sender: TObject);
+begin
+  RefreshWindows;
+end;
+
 procedure TMain.DestroyWindowInfo;
 var
   I: integer;
@@ -136,18 +143,14 @@ end;
 
 procedure TMain.btHelpClick(Sender: TObject);
 begin
-  ShowMessage('Open the game you want to force in borderless-windowed-fullscreen mode, ' +
-    'set it to windowed mode to the resolution you want, hit the Refresh button '
+  ShowMessage('Open the game you want to force in borderless-windowed-fullscreen mode, '
     +
-    'to refresh the windows list, select the game window from the list and press '
-    +
-    'the Fullscreenize button.  The window will be resized to the desktop area and '
-    +
-    'the border will be removed.  Note that using a different in-game resolution '
-    +
+    'set it to windowed mode to the resolution you want, hit the Refresh button ' +
+    'to refresh the windows list, select the game window from the list and press ' +
+    'the Fullscreenize button.  The window will be resized to the desktop area and ' +
+    'the border will be removed.  Note that using a different in-game resolution ' +
     'from the desktop resolution may not work properly (or at all) depending on the game.'
-    +
-    LineEnding + LineEnding + LineEnding +
+    + LineEnding + LineEnding + LineEnding +
     'Made by Kostas "Bad Sector" Michalopoulos');
 end;
 
