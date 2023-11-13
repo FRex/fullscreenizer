@@ -28,6 +28,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure lbWindowsDrawItem(Control: TWinControl; Index: integer;
       ARect: TRect; State: TOwnerDrawState);
+    procedure lbWindowsSelectionChange(Sender: TObject; User: boolean);
     procedure tmRefreshTimer(Sender: TObject);
   private
     { private declarations }
@@ -92,6 +93,11 @@ begin
     TextOut(ARect.Left + 18, ARect.Top + 1, lbWindows.Items[Index]);
     DrawIconEx(Handle, ARect.Left, ARect.Top, Wins[Index].Icon, 16, 16, 0, 0, DI_NORMAL);
   end;
+end;
+
+procedure TMain.lbWindowsSelectionChange(Sender: TObject; User: boolean);
+begin
+  btFullscreenize.Enabled := lbWindows.ItemIndex <> -1;
 end;
 
 procedure TMain.tmRefreshTimer(Sender: TObject);
@@ -165,6 +171,8 @@ begin
     for I := 0 to High(Wins) do
       if OldWindowHandle = Wins[I].Handle then
         lbWindows.ItemIndex := I;
+
+  btFullscreenize.Enabled := lbWindows.ItemIndex <> -1;
 end;
 
 procedure TMain.AddWindow(AHandle: THandle; ATitle: string; AIcon: Hicon);

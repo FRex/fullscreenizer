@@ -495,6 +495,7 @@ object Main: TMain
     BorderSpacing.Around = 6
     ItemHeight = 0
     OnDrawItem = lbWindowsDrawItem
+    OnSelectionChange = lbWindowsSelectionChange
     Style = lbOwnerDrawFixed
     TabOrder = 1
   end
