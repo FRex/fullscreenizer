@@ -23,6 +23,7 @@ type
     lbWindows: TListBox;
     tmRefresh: TTimer;
     procedure btFullscreenizeClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure lbWindowsDrawItem(Control: TWinControl; Index: integer;
@@ -136,6 +137,11 @@ begin
     SetWindowLong(Win, GWL_EXSTYLE, GetWindowLong(Win, GWL_EXSTYLE) or WS_EX_TOPMOST);
   MoveWindow(Win, FinalRect.Left, FinalRect.Top, FinalRect.Right -
     FinalRect.Left, FinalRect.Bottom - FinalRect.Top, True);
+end;
+
+procedure TMain.FormActivate(Sender: TObject);
+begin
+  RefreshWindows;
 end;
 
 procedure TMain.RefreshWindows;

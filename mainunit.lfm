@@ -481,6 +481,7 @@ object Main: TMain
     00008000000000010000C000000000030000E000000000070000F0000000000F
     0000F8000000001F0000FC000000003F0000
   }
+  OnActivate = FormActivate
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poScreenCenter
