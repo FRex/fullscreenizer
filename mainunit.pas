@@ -121,17 +121,8 @@ var
   FinalRect: TRect;
   Win: HWND;
 begin
-  if lbWindows.ItemIndex < 0 then
-  begin
-    ShowMessage('Please select a window first.');
+  if not ((0 <= lbWindows.ItemIndex) and (lbWindows.ItemIndex < Length(Wins))) then
     Exit;
-  end;
-  if lbWindows.ItemIndex >= Length(Wins) then
-  begin
-    RefreshWindows;
-    ShowMessage('Please select a window after refreshing the list first.');
-    Exit;
-  end;
   Win := Wins[lbWindows.ItemIndex].Handle;
   FinalRect.Left := 0;
   FinalRect.Top := 0;
