@@ -150,7 +150,7 @@ var
   OldWindowHandle: THandle;
 begin
   OldWindowHandle := 0;
-  if (0 < lbWindows.ItemIndex) and (lbWindows.ItemIndex < Length(Wins)) then
+  if (0 <= lbWindows.ItemIndex) and (lbWindows.ItemIndex < Length(Wins)) then
     OldWindowHandle := Wins[lbWindows.ItemIndex].Handle;
 
   DestroyWindowInfo;
