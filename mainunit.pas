@@ -51,6 +51,7 @@ var
   Title: array [0..1024] of unicodechar;
   TitStr: utf8string;
   Icon: HICON;
+  ProcessId: DWORD;
 begin
   if not IsWindowVisible(_para1) then Exit(True);
   GetWindowTextW(_para1, @Title, 1024);
@@ -60,7 +61,13 @@ begin
   if Icon = 0 then Icon := HICON(GetClassLongPtr(_para1, GCL_HICONSM));
   if Icon = 0 then Icon := HICON(GetClassLongPtr(_para1, GCL_HICON));
   if Icon <> 0 then Icon := CopyIcon(Icon);
-  Main.AddWindow(_para1, TitStr, Icon);
+
+  // do not add windows that belong to our process
+  ProcessId := 0;
+  GetWindowThreadProcessId(_para1, @ProcessId);
+  if ProcessId <> GetProcessId() then
+    Main.AddWindow(_para1, TitStr, Icon);
+
   Result := True;
 end;
 
