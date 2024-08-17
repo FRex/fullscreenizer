@@ -3,6 +3,7 @@ This is my personal modified version of [Fullscreenizer by Runtime Terror](http:
 As explained on that website, the original project doesn't take in patches, but welcomes people to fork the project so I did.
 
 Changes I've made based on my own personal usage are:
+1. fullscreenize the window on the monitor it's currenlty on, not on the primary one.
 1. auto-refresh the window list every 500 milliseconds.
 1. persist the chosen list box item between refreshes.
 1. disable the "Fullscreenize" button when there is no window selected instead of showing a modal pop up message.

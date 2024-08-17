@@ -123,11 +123,11 @@ var
 begin
   if not ((0 <= lbWindows.ItemIndex) and (lbWindows.ItemIndex < Length(Wins))) then
     Exit;
+
+  // use the monitor window is on, Screen.Width and Height is primary one
   Win := Wins[lbWindows.ItemIndex].Handle;
-  FinalRect.Left := 0;
-  FinalRect.Top := 0;
-  FinalRect.Right := Screen.Width;
-  FinalRect.Bottom := Screen.Height;
+  FinalRect := Screen.MonitorFromWindow(Win).BoundsRect;
+
   SetWindowLong(Win, GWL_STYLE, LONG(WS_POPUP or WS_VISIBLE));
   AdjustWindowRect(FinalRect, GetWindowLong(Win, GWL_STYLE), False);
   if cbApplyStayOnTop.Checked then
