@@ -485,7 +485,7 @@ object Main: TMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poScreenCenter
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '3.4.0.0'
   object lbWindows: TListBox
     Left = 6
     Height = 421
@@ -494,10 +494,10 @@ object Main: TMain
     Align = alClient
     BorderSpacing.Around = 6
     ItemHeight = 0
-    OnDrawItem = lbWindowsDrawItem
-    OnSelectionChange = lbWindowsSelectionChange
     Style = lbOwnerDrawFixed
     TabOrder = 1
+    OnDrawItem = lbWindowsDrawItem
+    OnSelectionChange = lbWindowsSelectionChange
   end
   object cbApplyStayOnTop: TCheckBox
     Left = 6
@@ -521,8 +521,8 @@ object Main: TMain
     Anchors = [akRight, akBottom]
     BorderSpacing.Around = 6
     Caption = 'Fullscreenize'
-    OnClick = btFullscreenizeClick
     TabOrder = 0
+    OnClick = btFullscreenizeClick
   end
   object tmRefresh: TTimer
     Interval = 500
